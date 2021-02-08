@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.contact__icones {
+  color: rgb(82, 76, 76);
+}
+
 @media (max-width: 1080px) {
   .contact-details .MuiPaper-root {
     width: 80%;

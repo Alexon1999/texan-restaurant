@@ -5,7 +5,12 @@ import "./navbar.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import NavMobile from "./mobile/NavMobile";
 
-import { debounce, isIntersecting, smoothScroll } from "../../utilities";
+import {
+  debounce,
+  getNombresArticles,
+  isIntersecting,
+  smoothScroll,
+} from "../../utilities";
 import { useNavBarStateValue } from "../../contexts/Navbar/NavBarState";
 import { SET_ACTIVE } from "../../contexts/Navbar/actiontypes";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -26,7 +31,7 @@ const NavBar = () => {
   const baskets = useSelector(selectBaskets);
 
   const changeBackground = () => {
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
     if (window.scrollY >= 80) {
       setShowBgNavBar(true);
     } else {
@@ -77,6 +82,7 @@ const NavBar = () => {
             if (link.isBasket) {
               return (
                 <div
+                  key={link.path}
                   className={`${
                     location.pathname === link.path ? "active " : ""
                   }navbar__links-basket`}
@@ -87,15 +93,14 @@ const NavBar = () => {
                   }}>
                   <Link
                     to={link.path}
-                    key={link.nom}
                     className={`${
                       location.pathname === link.path ? "active " : ""
                     }basket`}>
                     <i className='fas fa-shopping-basket'></i> Panier
-                    <span>{baskets.length}</span>
+                    <span>{getNombresArticles(baskets)}</span>
                   </Link>
                   <OverlayTrigger
-                    trigger={baskets.length ? "click" : "hover"}
+                    trigger={baskets.length ? ["click"] : ["hover", "focus"]}
                     placement='bottom'
                     rootClose={true} // when we click outside , we can close the overlay
                     overlay={
@@ -110,7 +115,6 @@ const NavBar = () => {
                               <div
                                 style={{
                                   display: "flex",
-                                  justifyContent: "center",
                                   alignItems: "center",
                                   padding: "10px 0",
                                 }}>
@@ -122,7 +126,10 @@ const NavBar = () => {
                                     objectFit: "contain",
                                   }}
                                 />
-                                <p style={{ margin: "0 5px 0" }}>
+                                <p
+                                  style={{
+                                    margin: "0 5px 0",
+                                  }}>
                                   {item.title}
                                 </p>
                               </div>
@@ -138,26 +145,28 @@ const NavBar = () => {
                 </div>
               );
             }
-            if (link.estDansHome) {
-              if (location.pathname === "/") {
-                return (
-                  <a
-                    href={"#" + link.id}
-                    key={link.nom}
-                    className={link.active ? "active" : undefined}
-                    onClick={pushToHome(link.id)}>
-                    {link.nom}
-                  </a>
-                );
-              }
-              return null;
-            }
+
+            // if (link.estDansHome) {
+            //   if (location.pathname === "/") {
+            //     return (
+            //       <a
+            //         href={"#" + link.id}
+            //         key={link.path}
+            //         className={link.active ? "active" : undefined}
+            //         onClick={pushToHome(link.id)}>
+            //         {link.nom}
+            //       </a>
+            //     );
+            //   }
+            //   return null;
+            // }
+
             // return jsx
             // console.log(location.pathname);
             return (
               <Link
                 to={link.path}
-                key={link.nom}
+                key={link.path}
                 className={
                   location.pathname === link.path ? "active" : undefined
                 }>

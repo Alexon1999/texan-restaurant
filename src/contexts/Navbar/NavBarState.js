@@ -3,7 +3,7 @@ import reducer from "./reducer";
 export const NavBarContext = createContext();
 
 const initialState = [
-  { id: "home", nom: "Le Texan", estDansHome: true, active: true },
+  { path: "/", id: "home", nom: "Le Texan", estDansHome: true, active: true },
 
   { path: "/commander", nom: "Commander", estDansHome: false, active: false },
   {

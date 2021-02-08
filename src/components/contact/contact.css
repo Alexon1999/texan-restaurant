@@ -30,7 +30,8 @@
   position: relative;
   padding-bottom: 12px;
   /* color: #3bb9e0; */
-  color: #ff5368;
+  /* color: #ff5368; */
+  color: rgba(39, 38, 38, 0.8);
   font-size: 2.3rem;
   font-weight: 850;
 }
@@ -51,7 +52,7 @@
 .contact__text {
   margin: 1rem 0 0;
   /* color: #3bb9e0; */
-  color: #ff5368;
+  /* color: #ff5368; */
   font-weight: 500;
   text-align: center;
 }

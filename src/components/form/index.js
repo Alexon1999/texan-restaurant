@@ -38,18 +38,18 @@ const useStyles = makeStyles((theme) => ({
 
   border: {
     "& label.Mui-focused": {
-      color: "#38B6FF",
+      color: "#ccc",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#38B6FF",
+      borderBottomColor: "#ccc",
     },
 
     "& .MuiOutlinedInput-root": {
       "&:hover fieldset": {
-        borderColor: "#38B6FF",
+        borderColor: "#ccc",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#38B6FF",
+        borderColor: "#ccc",
       },
     },
   },

@@ -8,7 +8,11 @@ const ModalBootsrap = ({ children, show, handleClose, title, img }) => {
           <Modal.Title>
             <div>
               <h2>{title}</h2>
-              <img src={img} alt='' />
+              <img
+                src={img}
+                alt=''
+                style={{ maxWidth: "80%", objectFit: "contain" }}
+              />
             </div>
           </Modal.Title>
         </Modal.Header>

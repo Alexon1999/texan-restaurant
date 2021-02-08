@@ -1,4 +1,4 @@
-export const smoothScroll = (to) => (e) => {
+const smoothScroll = (to) => (e) => {
   e.preventDefault();
   e.stopPropagation();
 
@@ -15,7 +15,7 @@ export const smoothScroll = (to) => (e) => {
   });
 };
 
-export function debounce(cb, delay, fn) {
+function debounce(cb, delay, fn) {
   let timeoutId;
   return function (...args) {
     fn();
@@ -28,7 +28,7 @@ export function debounce(cb, delay, fn) {
   };
 }
 
-export function isIntersecting(el_id) {
+function isIntersecting(el_id) {
   const element = document.getElementById(el_id);
   const scrollTop_el = element?.offsetTop || element?.scrollTop || 0;
   // const height_el = element?.clientHeight || 0; // element a la moitié
@@ -48,3 +48,27 @@ export function isIntersecting(el_id) {
 
   return false;
 }
+
+function calculTotal(baskets = []) {
+  return baskets.reduce((total, product) => {
+    total += product.quantite * product.prix;
+    return total;
+  }, 0);
+}
+
+function splitPrix(prix = 0.0, splitOn = ".", joinWith = "€") {
+  return prix.toString().split(splitOn).join(joinWith);
+}
+
+function getNombresArticles(baskets = []) {
+  return baskets.reduce((total, product) => total + product.quantite, 0);
+}
+
+export {
+  isIntersecting,
+  debounce,
+  smoothScroll,
+  calculTotal,
+  splitPrix,
+  getNombresArticles,
+};

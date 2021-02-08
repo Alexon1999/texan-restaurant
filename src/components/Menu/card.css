@@ -22,6 +22,7 @@
 }
 
 .card__item__image-container img {
+  /* taille image */
   max-width: 200px;
   max-height: 150px;
   object-fit: contain;
@@ -31,6 +32,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .card__item__details p {
@@ -39,4 +41,11 @@
 
 .card__item__details i {
   cursor: pointer;
+}
+
+.card__item__shopping-btn {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }

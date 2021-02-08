@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import Menu from "../components/Menu";
 import Card from "../components/Menu/card";
 
@@ -9,75 +11,6 @@ import CosaNostra from "../images/cosa-nostra.png";
 import TexasRanger from "../images/texas-ranger.png";
 import Frites from "../images/frites.png";
 import Wings from "../images/wings.png";
-
-const datas = [
-  {
-    title: "Frenchies",
-    prix: "11€99",
-    img: frenchies,
-    categ: "burgers",
-  },
-  {
-    title: "Cosa Nostra",
-    prix: "11€99",
-    img: CosaNostra,
-    categ: "burgers",
-  },
-  {
-    title: "Texas Ranger",
-    prix: "15€99",
-    img: TexasRanger,
-    categ: "burgers",
-  },
-  {
-    title: "Frenchies",
-    prix: "11€99",
-    img: frenchies,
-    categ: "burgers",
-  },
-  {
-    title: "Frenchies",
-    prix: "11€99",
-    img: frenchies,
-    categ: "burgers",
-  },
-  {
-    title: "Frenchies",
-    prix: "11€99",
-    img: frenchies,
-    categ: "burgers",
-  },
-  {
-    title: "Frenchies",
-    prix: "11€99",
-    img: frenchies,
-    categ: "burgers",
-  },
-  {
-    title: "Frenchies",
-    prix: "11€99",
-    img: frenchies,
-    categ: "burgers",
-  },
-  {
-    title: "Frenchies",
-    prix: "11€99",
-    img: frenchies,
-    categ: "burgers",
-  },
-  {
-    title: "Frites",
-    prix: "3€99",
-    img: Frites,
-    categ: "sides",
-  },
-  {
-    title: "Hot Wings",
-    prix: "7€99",
-    img: Wings,
-    categ: "sides",
-  },
-];
 
 const Commander = () => {
   const [active, setActive] = useState("Burgers");
@@ -90,8 +23,8 @@ const Commander = () => {
         <div className='commander__container__cards'>
           {datas
             .filter((data) => data.categ === active.toLowerCase())
-            .map((data, i) => {
-              return <Card key={i} {...data} />;
+            .map((data) => {
+              return <Card key={data.id} {...data} />;
             })}
           {/* <Card />
           <Card />
@@ -105,5 +38,85 @@ const Commander = () => {
     </div>
   );
 };
+
+const datas = [
+  {
+    id: 1,
+    title: "Frenchies",
+    prix: 11.99,
+    img: frenchies,
+    categ: "burgers",
+  },
+  {
+    id: 2,
+    title: "Cosa Nostra",
+    prix: 11.99,
+    img: CosaNostra,
+    categ: "burgers",
+  },
+  {
+    id: 3,
+    title: "Texas Ranger",
+    prix: 15.99,
+    img: TexasRanger,
+    categ: "burgers",
+  },
+  {
+    id: 4,
+    title: "Frenchies",
+    prix: 11.99,
+    img: frenchies,
+    categ: "burgers",
+  },
+  {
+    id: 5,
+    title: "Frenchies",
+    prix: 11.99,
+    img: frenchies,
+    categ: "burgers",
+  },
+  {
+    id: 6,
+    title: "Frenchies",
+    prix: 11.99,
+    img: frenchies,
+    categ: "burgers",
+  },
+  {
+    id: 7,
+    title: "Frenchies",
+    prix: 11.99,
+    img: frenchies,
+    categ: "burgers",
+  },
+  {
+    id: 8,
+    title: "Frenchies",
+    prix: 11.99,
+    img: frenchies,
+    categ: "burgers",
+  },
+  {
+    id: 9,
+    title: "Frenchies",
+    prix: 11.99,
+    img: frenchies,
+    categ: "burgers",
+  },
+  {
+    id: 10,
+    title: "Frites",
+    prix: 3.99,
+    img: Frites,
+    categ: "sides",
+  },
+  {
+    id: 11,
+    title: "Hot Wings",
+    prix: 7.99,
+    img: Wings,
+    categ: "sides",
+  },
+];
 
 export default Commander;

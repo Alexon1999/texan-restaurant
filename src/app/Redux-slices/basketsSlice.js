@@ -8,21 +8,49 @@ export const basketsSlice = createSlice({
   name: "baskets",
   initialState: [],
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    incrementQauntite: (state, action) => {
+      const productIdx = state.findIndex(
+        (product) => product.id === action.payload.id
+      );
+      if (productIdx !== -1) {
+        state[productIdx].quantite++;
+      }
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    decrementQauntite: (state, action) => {
+      const productIdx = state.findIndex(
+        (product) => product.id === action.payload.id
+      );
+
+      if (productIdx !== -1) {
+        if (state[productIdx].quantite === 1) {
+          state.splice(productIdx, 1);
+        } else {
+          state[productIdx].quantite--;
+        }
+      }
     },
+
     addProduct: (state, action) => {
-      state.push(action.payload);
+      const productIdx = state.findIndex(
+        (product) => product.id === action.payload.id
+      );
+      if (productIdx !== -1) {
+        const quantite = state[productIdx].quantite + 1;
+        state.splice(productIdx, 1, {
+          ...action.payload,
+          quantite,
+        });
+      } else {
+        state.push(action.payload);
+      }
     },
   },
 });
 
 //+ generated action creator functions :return an object with payload and type
 export const {
-  increment,
+  incrementQauntite,
+  decrementQauntite,
   incrementByAmount,
   addProduct,
 } = basketsSlice.actions;

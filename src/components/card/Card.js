@@ -27,8 +27,7 @@ const useStyles = makeStyles({
 
   icone: {
     marginRight: 6,
-    // color: "#38B6FF",
-    color: "#ff5368",
+    color: "rgb(82, 76, 76)",
   },
   iconeReseaux: {
     marginRight: 15,

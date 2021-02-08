@@ -23,8 +23,6 @@ const Alert = ({ img, title, id }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(pourcentage);
-
   return (
     <motion.div
       className='alert'
