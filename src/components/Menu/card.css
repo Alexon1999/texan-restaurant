@@ -1,0 +1,42 @@
+.card__item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: rgb(241, 241, 241);
+  border-radius: 10px;
+  justify-content: space-between;
+  /* cursor: pointer; */
+  min-height: 250px; /* optionnel */
+}
+
+.card__item__heading {
+  text-align: center;
+  color: rgb(100, 100, 100);
+  font-size: 2rem;
+}
+
+.card__item__image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__item__image-container img {
+  max-width: 200px;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+.card__item__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__item__details p {
+  margin: 0;
+}
+
+.card__item__details i {
+  cursor: pointer;
+}
