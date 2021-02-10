@@ -4,8 +4,11 @@ import { selectBaskets } from "../app/Redux-slices/basketsSlice";
 import Empty from "../images/empty.svg";
 import Product from "../components/product/Product";
 import { calculTotal, getNombresArticles } from "../utilities";
+import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 const Panier = () => {
+  const history = useHistory();
   const baskets = useSelector(selectBaskets);
 
   return (
@@ -21,14 +24,23 @@ const Panier = () => {
             Détail de votre panier ( {getNombresArticles(baskets)} article
             {getNombresArticles(baskets) > 1 && "s"})
           </h1>
-          {baskets.map((basket) => {
-            return <Product key={basket.id} {...basket} />;
+          {baskets.map((product) => {
+            return <Product key={product.id} {...product} />;
           })}
 
           <div className='panier__container--prix'>
             <h1>TOTAL</h1>
             <p>{calculTotal(baskets)} €</p>
           </div>
+
+          <Button
+            onClick={() => history.push("/paiement")}
+            type='submit'
+            variant='contained'
+            color='primary'
+            className='panier__container--btn-valider'>
+            Valider Mon Panier
+          </Button>
         </div>
       )}
     </div>

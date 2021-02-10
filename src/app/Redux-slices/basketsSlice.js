@@ -44,6 +44,10 @@ export const basketsSlice = createSlice({
         state.push(action.payload);
       }
     },
+
+    emptyBasket: (state) => {
+      state.length = 0;
+    },
   },
 });
 
@@ -53,6 +57,7 @@ export const {
   decrementQauntite,
   incrementByAmount,
   addProduct,
+  emptyBasket,
 } = basketsSlice.actions;
 
 // useSelector(state => state.baskets) :returns the state for baskets

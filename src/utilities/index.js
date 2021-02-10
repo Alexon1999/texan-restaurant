@@ -50,10 +50,15 @@ function isIntersecting(el_id) {
 }
 
 function calculTotal(baskets = []) {
-  return baskets.reduce((total, product) => {
+  const price = baskets.reduce((total, product) => {
     total += product.quantite * product.prix;
     return total;
   }, 0);
+
+  return price.toFixed(2);
+}
+function calculPrixProduitAvecQuantite(product) {
+  return (product.quantite * product.prix).toFixed(2);
 }
 
 function splitPrix(prix = 0.0, splitOn = ".", joinWith = "€") {
@@ -71,4 +76,5 @@ export {
   calculTotal,
   splitPrix,
   getNombresArticles,
+  calculPrixProduitAvecQuantite,
 };

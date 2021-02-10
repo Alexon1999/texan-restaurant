@@ -39,3 +39,10 @@
   font-size: 1.5rem;
   font-weight: 600;
 }
+
+.panier__container--btn-valider {
+  text-align: center !important;
+  background: rgb(77, 76, 76) !important;
+  margin: auto !important;
+  display: block !important;
+}

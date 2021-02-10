@@ -11,6 +11,17 @@ import Alerts from "./components/alert/Alerts";
 
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
+// + Stripe
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Paiement from "./pages/Paiement";
+import Felicitation from "./pages/Felicitation";
+
+// publish key c'est pour identifier votre compte stripe, ce n'est pas un secret key
+const stripePromise = loadStripe(
+  process.env.REACT_APP_STRIPE_PUBLISH_KEY ||
+    "pk_test_51IIvIiJnUZH8vWLUUchVy18GC4RMwtaLZPxLWWsroa6WPrml7zUkSHS1zqbo2nr9qIrgzZuBhjIiAfuecpbKWsqL00LTFHUPLH"
+);
 
 function App() {
   return (
@@ -25,6 +36,12 @@ function App() {
           <Route exact path='/commander' component={Commander} />
           <Route exact path='/contact' component={Contact} />
           <Route exact path='/panier' component={Panier} />
+          <Route exact path='/paiement'>
+            <Elements stripe={stripePromise}>
+              <Paiement />
+            </Elements>
+          </Route>
+          <Route exact path='/felicitation' component={Felicitation} />
           <Route exact component={NotFoundPage} />
         </Switch>
       </Router>

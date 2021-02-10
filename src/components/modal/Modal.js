@@ -17,11 +17,6 @@ const ModalBootsrap = ({ children, show, handleClose, title, img }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>{children}</Modal.Body>
-        <Modal.Footer>
-          {/* <Button variant='primary' onClick={handleClose}>
-            Fermer
-          </Button> */}
-        </Modal.Footer>
       </Modal>
     </>
   );

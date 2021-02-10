@@ -49,3 +49,9 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.card__item__commander-btn {
+  text-align: center !important;
+  margin: auto !important;
+  display: flex !important;
+}
