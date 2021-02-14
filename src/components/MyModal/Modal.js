@@ -66,7 +66,7 @@ const Modal = ({ showModal, handleClose, closeButton = true, children }) => {
 
             {closeButton && (
               <div className='myModal__modal__close'>
-                <IconButton onClick={handleClose}>
+                <IconButton onClick={handleClose} className='myModal__modal__close-btn'>
                   <i className='fas fa-times'></i>
                 </IconButton>
               </div>
@@ -77,7 +77,7 @@ const Modal = ({ showModal, handleClose, closeButton = true, children }) => {
     </AnimatePresence>
   );
 };
-
+// compound components = sous composants
 Modal.Header = ({ children, ...rest }) => {
   return (
     <div {...rest} className='myModal__header'>

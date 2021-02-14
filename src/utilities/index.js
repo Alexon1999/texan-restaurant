@@ -57,6 +57,7 @@ function calculTotal(baskets = []) {
 
   return price.toFixed(2);
 }
+
 function calculPrixProduitAvecQuantite(product) {
   return (product.quantite * product.prix).toFixed(2);
 }

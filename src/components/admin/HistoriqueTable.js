@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ContactTable({ contacts , deleteContact}) {
+export default function HistoriqueTable({ contacts, deleteContact }) {
   const classes = useStyles();
 
   return (
@@ -34,7 +34,7 @@ export default function ContactTable({ contacts , deleteContact}) {
           <TableRow>
             <TableCell className={classes.heading}>Nom</TableCell>
             <TableCell className={classes.heading} align='right'>
-              Nom Societe
+              Prenom
             </TableCell>
             <TableCell className={classes.heading} align='right'>
               Numéro Teléphone
@@ -43,9 +43,8 @@ export default function ContactTable({ contacts , deleteContact}) {
               Email
             </TableCell>
             <TableCell className={classes.heading} align='right'>
-              Message
+              Commentaire
             </TableCell>
-            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,7 +57,12 @@ export default function ContactTable({ contacts , deleteContact}) {
               <TableCell align='right'>{contact.numTel}</TableCell>
               <TableCell align='right'>{contact.email}</TableCell>
               <TableCell align='right'>{contact.message}</TableCell>
-              <TableCell align='right' className='text-light bg-danger text-center' onClick={deleteContact(contact.id)}>X</TableCell>
+              <TableCell
+                align='right'
+                className='text-light bg-danger text-center'
+                onClick={deleteContact(contact.id)}>
+                X
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

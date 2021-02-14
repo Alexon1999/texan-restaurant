@@ -35,7 +35,7 @@ export const basketsSlice = createSlice({
         (product) => product.id === action.payload.id
       );
       if (productIdx !== -1) {
-        const quantite = state[productIdx].quantite + 1;
+        const quantite = state[productIdx].quantite + action.payload.quantite;
         state.splice(productIdx, 1, {
           ...action.payload,
           quantite,

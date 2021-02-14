@@ -5,6 +5,7 @@ import texas from "../../images/texas.png";
 import burger from "../../images/burger.png";
 
 import Carousel from "react-bootstrap/Carousel";
+import Logo from "../../images/logo.png";
 
 import { Link } from "react-router-dom";
 
@@ -38,6 +39,7 @@ const hero = () => {
                 <div className='carousel__item'>
                   <div className='hero__hero'>
                     <div className='hero__hero-hadings'>
+                      <img src={Logo} alt='' />
                       <p>{data.en_tete}</p>
                       <p className='hero__subtext'>{data.sous_texte}</p>
 

@@ -15,19 +15,26 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { splitPrix } from "../../utilities";
 
 import Modal from "../MyModal/Modal";
+import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@material-ui/icons/Add";
 
 const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
   const [show, setShow] = useState(false);
   const dispath = useDispatch();
   const [showButton, setShowButton] = useState(false);
   // const baskets = useSelector(selectBaskets)
+  const [quantite, setQuantite] = useState(1);
 
   const handleClose = (e) => {
+    console.log(e.target.classList);
+
     if (
       e.target.classList.contains("myModal__backdrop") ||
-      e.target.classList.contains("MuiIconButton-root") ||
-      e.target.classList.contains("fa-times") ||
-      e.target.classList.contains("MuiIconButton-label")
+      e.target.classList.contains("myModal__modal__close-btn") ||
+      e.target.parentNode.classList.contains("myModal__modal__close-btn") ||
+      e.target.parentNode.parentNode.classList.contains(
+        "myModal__modal__close-btn"
+      )
     ) {
       setShow(false);
       setShowButton(false);
@@ -86,6 +93,7 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
         <Modal.Header>
           <h1>{title}</h1>
           <img src={img} alt={title} />
+          <p>{splitPrix(prix)}</p>
         </Modal.Header>
         <Modal.Body>
           <Modal.Body.Heading>Ingredients utilisés</Modal.Body.Heading>
@@ -94,16 +102,38 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
           <p>Salade</p>
         </Modal.Body>
         <Modal.Footer>
+          <div style={{ marginRight: "15px" }}>
+            <IconButton
+              style={{ margin: "0 5px" }}
+              onClick={() => {
+                if (quantite > 0) {
+                  setQuantite(quantite - 1);
+                }
+              }}>
+              <RemoveIcon />
+            </IconButton>
+
+            <span>{quantite}</span>
+
+            <IconButton
+              style={{ margin: "0 5px" }}
+              onClick={() => setQuantite(quantite + 1)}>
+              <AddIcon />
+            </IconButton>
+          </div>
+
           <Button
+            disabled={quantite === 0}
             onClick={() => {
-              dispath(addProduct({ title, img, prix, id, quantite: 1 }));
+              dispath(addProduct({ title, img, prix, id, quantite }));
               dispath(addAlert({ title, img, id: uuidv4() }));
+              setQuantite(1);
             }}
             variant='contained'
             color='secondary'
             className='card__item__commander-btn'
             endIcon={<AddShoppingCartIcon style={{ fontSize: "25px" }} />}>
-            Commander
+            Ajouter au panier
           </Button>
         </Modal.Footer>
       </Modal>

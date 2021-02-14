@@ -155,12 +155,15 @@ const Paiement = () => {
   const handleChange = (event) => {
     // Listen for changes in CardElement
     // and display any errors as the customer types their card details
+    // console.log(event);
     setDisabled(event.empty);
     setError(event.error ? event.error.message : "");
   };
 
   const Payer = async (e) => {
     e.preventDefault();
+
+    setProcessing(true);
 
     const { data } = await axios.post(
       "https://texan-stripe.herokuapp.com/create-client-secret",
@@ -171,9 +174,6 @@ const Paiement = () => {
     );
     // *100 : stripe prend l'unité en centimes
     // 3€ -> 300 centimes
-
-    setProcessing(true);
-    setDisabled(true);
 
     const billing_details = {
       name: nom + " " + prenom,
@@ -197,7 +197,7 @@ const Paiement = () => {
         },
       });
       if (payload.error) {
-        setError(`Paiement échoué ${payload.error.message}`);
+        setError(`Paiement échoué: ${payload.error.message}`);
         setProcessing(false);
       } else {
         setError(null);
@@ -215,14 +215,15 @@ const Paiement = () => {
   };
 
   const handleClose = (e) => {
-    console.log(e.target.classList);
+    // console.log(e.target.classList);
 
     if (
       e.target.classList.contains("myModal__backdrop") ||
-      e.target.classList.contains("MuiIconButton-root") ||
-      e.target.classList.contains("fa-times") ||
-      e.target.classList.contains("MuiIconButton-label") ||
-      e.target.classList.contains("MuiButton-label")
+      e.target.classList.contains("myModal__modal__close-btn") ||
+      e.target.parentNode.classList.contains("myModal__modal__close-btn") ||
+      e.target.parentNode.parentNode.classList.contains(
+        "myModal__modal__close-btn"
+      )
     ) {
       setShowModal(false);
     }
@@ -396,6 +397,13 @@ const Paiement = () => {
                 {error && (
                   <div className='paiement__details__error'>* {error}</div>
                 )}
+
+                {baskets.length === 0 && (
+                  <div className='paiement__details__error'>
+                    * Vous n'avez rien dans le panier
+                  </div>
+                )}
+
                 <Button
                   onClick={Payer}
                   disabled={
@@ -447,12 +455,17 @@ const Paiement = () => {
             </h2>
           </Modal.Header>
           <Modal.Footer>
-            <Button variant='contained' color='secondary' onClick={handleClose}>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={handleClose}
+              className='myModal__modal__close-btn'>
               Annuler
             </Button>
             <Button
               variant='contained'
               style={{ marginLeft: "20px" }}
+              className='myModal__modal__close-btn'
               onClick={(e) => {
                 handleClose(e);
                 history.replace("/commander");

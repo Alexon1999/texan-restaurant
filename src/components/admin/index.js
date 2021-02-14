@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { auth } from "../../config/firebase";
+// import { auth } from "../../config/firebase";
 import useForm from "../../hooks/useForm";
 import {
   Button,
@@ -11,6 +11,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import AdminPage from "./AdminPage";
+// import AdminPage from "./AdminPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,30 +26,30 @@ const useStyles = makeStyles((theme) => ({
 
 const Admin = () => {
   const classes = useStyles();
-  const [admin, setAdmin] = useState(null);
+  const [admin, setAdmin] = useState(true);
   const { state, handleInputChange } = useForm({ email: "", password: "" });
 
   const { email, password } = state;
 
   useEffect(() => {
-    const unSubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        setAdmin(authUser);
-      } else {
-        setAdmin(null);
-      }
-    });
-    return () => {
-      unSubscribe();
-    };
+    // const unSubscribe = auth.onAuthStateChanged((authUser) => {
+    //   if (authUser) {
+    //     setAdmin(authUser);
+    //   } else {
+    //     setAdmin(null);
+    //   }
+    // });
+    // return () => {
+    //   unSubscribe();
+    // };
   }, [admin]);
 
   const seConnecter = (e) => {
     e.preventDefault();
 
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .catch((err) => alert(err.message));
+    // auth
+    //   .signInWithEmailAndPassword(email, password)
+    //   .catch((err) => alert(err.message));
   };
 
   return (
@@ -101,7 +102,7 @@ const Admin = () => {
                 display: "flex",
                 margin: "10px auto",
                 textAlign: "center",
-                background: "#35a7e9",
+                background: "rgb(77, 76, 76)",
               }}>
               Se connecter
             </Button>

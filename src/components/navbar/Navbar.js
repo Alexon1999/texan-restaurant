@@ -56,134 +56,138 @@ const NavBar = () => {
     // smoothScroll(id)(e);
   };
 
-  return (
-    <nav
-      onMouseEnter={() => setShowBgNavBar(true)}
-      onMouseLeave={() => setShowBgNavBar(false)}
-      className={`navbar ${showBgNavBar ? "active" : ""} ${
-        location.pathname !== "/" ? "sticky" : ""
-      }`}
-      ref={nav}
-      id='navbar'>
-      <div className='navbar__container'>
-        <div className='navbar__logo-container'>
-          {location.pathname === "/" ? (
-            <a href='#home' onClick={IsActiveButton("home")}>
-              <img className='navbar__logo' src={Logo} alt='Markus' />
-            </a>
-          ) : (
-            <Link to='/' onClick={pushToHome("home")}>
-              <img className='navbar__logo' src={Logo} alt='Markus' />
-            </Link>
-          )}
-        </div>
-        <div className='navbar__links'>
-          {state.map((link) => {
-            if (link.isBasket) {
-              return (
-                <div
-                  key={link.path}
-                  className={`${
-                    location.pathname === link.path ? "active " : ""
-                  }navbar__links-basket`}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  <Link
-                    to={link.path}
+  if (location.pathname !== "/admin") {
+    return (
+      <nav
+        onMouseEnter={() => setShowBgNavBar(true)}
+        onMouseLeave={() => setShowBgNavBar(false)}
+        className={`navbar ${showBgNavBar ? "active" : ""} ${
+          location.pathname !== "/" ? "sticky" : ""
+        }`}
+        ref={nav}
+        id='navbar'>
+        <div className='navbar__container'>
+          <div className='navbar__logo-container'>
+            {location.pathname === "/" ? (
+              <a href='#home' onClick={IsActiveButton("home")}>
+                <img className='navbar__logo' src={Logo} alt='Markus' />
+              </a>
+            ) : (
+              <Link to='/' onClick={pushToHome("home")}>
+                <img className='navbar__logo' src={Logo} alt='Markus' />
+              </Link>
+            )}
+          </div>
+          <div className='navbar__links'>
+            {state.map((link) => {
+              if (link.isBasket) {
+                return (
+                  <div
+                    key={link.path}
                     className={`${
                       location.pathname === link.path ? "active " : ""
-                    }basket`}>
-                    <i className='fas fa-shopping-basket'></i> Panier
-                    <span>{getNombresArticles(baskets)}</span>
-                  </Link>
-                  <OverlayTrigger
-                    trigger={baskets.length ? ["click"] : ["hover", "focus"]}
-                    placement='bottom'
-                    rootClose={true} // when we click outside , we can close the overlay
-                    overlay={
-                      <Popover>
-                        <Popover.Title as='h3' className='text-center'>
-                          Votre panier {!baskets.length && "est vide"}
-                        </Popover.Title>
-                        {/* quand le panier est remplie*/}
-                        {!!baskets.length && (
-                          <Popover.Content>
-                            {baskets.map((item) => (
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  padding: "10px 0",
-                                }}>
-                                <img
-                                  src={item.img}
-                                  alt=''
+                    }navbar__links-basket`}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}>
+                    <Link
+                      to={link.path}
+                      className={`${
+                        location.pathname === link.path ? "active " : ""
+                      }basket`}>
+                      <i className='fas fa-shopping-basket'></i> Panier
+                      <span>{getNombresArticles(baskets)}</span>
+                    </Link>
+                    <OverlayTrigger
+                      trigger={baskets.length ? ["click"] : ["hover", "focus"]}
+                      placement='bottom'
+                      rootClose={true} // when we click outside , we can close the overlay
+                      overlay={
+                        <Popover>
+                          <Popover.Title as='h3' className='text-center'>
+                            Votre panier {!baskets.length && "est vide"}
+                          </Popover.Title>
+                          {/* quand le panier est remplie*/}
+                          {!!baskets.length && (
+                            <Popover.Content>
+                              {baskets.map((item) => (
+                                <div
                                   style={{
-                                    maxWidth: "50px",
-                                    objectFit: "contain",
-                                  }}
-                                />
-                                <p
-                                  style={{
-                                    margin: "0 5px 0",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    padding: "10px 0",
                                   }}>
-                                  {item.title}
-                                </p>
-                              </div>
-                            ))}
-                          </Popover.Content>
-                        )}
-                      </Popover>
-                    }>
-                    <IconButton>
-                      <ArrowDropDownIcon />
-                    </IconButton>
-                  </OverlayTrigger>
-                </div>
+                                  <img
+                                    src={item.img}
+                                    alt=''
+                                    style={{
+                                      maxWidth: "50px",
+                                      objectFit: "contain",
+                                    }}
+                                  />
+                                  <p
+                                    style={{
+                                      margin: "0 5px 0",
+                                    }}>
+                                    {item.title}
+                                  </p>
+                                </div>
+                              ))}
+                            </Popover.Content>
+                          )}
+                        </Popover>
+                      }>
+                      <IconButton>
+                        <ArrowDropDownIcon />
+                      </IconButton>
+                    </OverlayTrigger>
+                  </div>
+                );
+              }
+
+              // if (link.estDansHome) {
+              //   if (location.pathname === "/") {
+              //     return (
+              //       <a
+              //         href={"#" + link.id}
+              //         key={link.path}
+              //         className={link.active ? "active" : undefined}
+              //         onClick={pushToHome(link.id)}>
+              //         {link.nom}
+              //       </a>
+              //     );
+              //   }
+              //   return null;
+              // }
+
+              // return jsx
+              // console.log(location.pathname);
+              return (
+                <Link
+                  to={link.path}
+                  key={link.path}
+                  className={
+                    location.pathname === link.path ? "active" : undefined
+                  }>
+                  {link.nom}
+                </Link>
               );
-            }
+            })}
+          </div>
 
-            // if (link.estDansHome) {
-            //   if (location.pathname === "/") {
-            //     return (
-            //       <a
-            //         href={"#" + link.id}
-            //         key={link.path}
-            //         className={link.active ? "active" : undefined}
-            //         onClick={pushToHome(link.id)}>
-            //         {link.nom}
-            //       </a>
-            //     );
-            //   }
-            //   return null;
-            // }
-
-            // return jsx
-            // console.log(location.pathname);
-            return (
-              <Link
-                to={link.path}
-                key={link.path}
-                className={
-                  location.pathname === link.path ? "active" : undefined
-                }>
-                {link.nom}
-              </Link>
-            );
-          })}
+          <NavMobile
+            currentPage={currentPage}
+            IsActiveButton={IsActiveButton}
+            // activeButton={activeButton}
+          />
         </div>
+      </nav>
+    );
+  }
 
-        <NavMobile
-          currentPage={currentPage}
-          IsActiveButton={IsActiveButton}
-          // activeButton={activeButton}
-        />
-      </div>
-    </nav>
-  );
+  return null;
 };
 
 export default NavBar;

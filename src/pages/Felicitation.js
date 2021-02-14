@@ -18,11 +18,15 @@ const Felicitation = () => {
       path: "https://assets3.lottiefiles.com/packages/lf20_u4yrau.json",
     });
     animItem.play();
-  }, []);
 
-  setTimeout(() => {
-    history.replace("/");
-  }, 10000);
+    const id = setTimeout(() => {
+      history.replace("/");
+    }, 10000);
+
+    return () => {
+      clearTimeout(id);
+    };
+  }, []);
 
   if (location.state?.payer) {
     return (

@@ -14,7 +14,7 @@ const Product = ({ img, title, prix, id, quantite }) => {
 
   return (
     <div className='product'>
-      <img src={img} alt='' />
+      <img src={img} alt={title} />
       <div className='product--info'>
         <p className='product--info-title'>{title}</p>
         <p className='product--info-prix'>{splitPrix(prix)}</p>
@@ -23,7 +23,9 @@ const Product = ({ img, title, prix, id, quantite }) => {
       <div className='product--quantite'>
         <IconButton
           onClick={() => {
-            dispatch(decrementQauntite({ id }));
+            if (quantite > 0) {
+              dispatch(decrementQauntite({ id }));
+            }
           }}>
           <RemoveIcon />
         </IconButton>

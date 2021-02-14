@@ -52,6 +52,9 @@
   color: rgb(100, 100, 100);
   font-size: 1.5rem;
 }
+.myModal__header p {
+  margin: 0;
+}
 
 .myModal__header img {
   max-width: 200px;
