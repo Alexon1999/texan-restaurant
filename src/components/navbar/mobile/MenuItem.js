@@ -35,13 +35,13 @@ export const MenuItem = ({
       variants={variants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}>
-      {/* <Link
+      <Link
         onClick={toggleOpen}
         to={path}
         className={currentPage === path ? "active" : undefined}>
         {nom}
-      </Link> */}
-      <a
+      </Link>
+      {/* <a
         href={"#" + id}
         key={nom}
         // className={id === activeButton ? "active" : undefined}
@@ -51,7 +51,7 @@ export const MenuItem = ({
           IsActiveButton(id)(e);
         }}>
         {nom}
-      </a>
+      </a> */}
     </motion.li>
   );
 };

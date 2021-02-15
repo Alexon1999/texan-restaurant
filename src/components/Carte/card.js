@@ -26,7 +26,7 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
   const [quantite, setQuantite] = useState(1);
 
   const handleClose = (e) => {
-    console.log(e.target.classList);
+    // console.log(e.target.classList);
 
     if (
       e.target.classList.contains("myModal__backdrop") ||
@@ -102,7 +102,12 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
           <p>Salade</p>
         </Modal.Body>
         <Modal.Footer>
-          <div style={{ marginRight: "15px" }}>
+          <div
+            style={{
+              marginRight: "15px",
+              display: "flex",
+              alignItems: "center",
+            }}>
             <IconButton
               style={{ margin: "0 5px" }}
               onClick={() => {

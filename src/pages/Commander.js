@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import Menu from "../components/Menu";
-import Card from "../components/Menu/card";
+import Carte from "../components/Carte";
+import Card from "../components/Carte/card";
 
 import "./commander.css";
 
@@ -11,15 +11,26 @@ import CosaNostra from "../images/cosa-nostra.png";
 import TexasRanger from "../images/texas-ranger.png";
 import Frites from "../images/frites.png";
 import Wings from "../images/wings.png";
-
+import { IconButton } from "@material-ui/core";
 const Commander = () => {
   const [active, setActive] = useState("Burgers");
+  const [activeCarte, setActiveCarte] = useState(true);
+
+  // activeCarte && (window.document.body.style.overflow = "hidden")
+
+  activeCarte
+    ? (window.document.body.style.overflow = "hidden")
+    : (window.document.body.style.overflow = "auto");
 
   return (
     <div className='commander'>
       <div className='commander__container'>
-        <Menu active={active} setActive={setActive} />
-        <div></div>
+        <Carte
+          active={active}
+          setActive={setActive}
+          activeCarte={activeCarte}
+          setActiveCarte={setActiveCarte}
+        />
         <div className='commander__container__cards'>
           {datas
             .filter((data) => data.categ === active.toLowerCase())
@@ -33,6 +44,15 @@ const Commander = () => {
           <Card />
           <Card />
           <Card /> */}
+        </div>
+
+        <div className={"commander__carte " + (activeCarte ? "white" : null)}>
+          <IconButton onClick={() => setActiveCarte(() => !activeCarte)}>
+            <i
+              className={
+                "fas fa-arrow-" + (activeCarte ? "left" : "right")
+              }></i>
+          </IconButton>
         </div>
       </div>
     </div>

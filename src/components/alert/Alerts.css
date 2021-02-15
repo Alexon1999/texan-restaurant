@@ -60,3 +60,13 @@
 .alert .progress-bar {
   background-color: #dadada;
 }
+
+@media (max-width: 550px) {
+  .alerts {
+    right: 10px;
+  }
+
+  .alert {
+    width: 300px;
+  }
+}

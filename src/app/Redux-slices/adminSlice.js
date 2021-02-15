@@ -9,31 +9,36 @@ export const adminSlice = createSlice({
   initialState: {
     pages: [
       {
-        name: "nouvelle_commandes",
+        name: "nouvelles_commandes",
+        path: "/nouvelles-commandes",
         libelle: "Nouvelles commandes",
         active: false,
         icone: "fa-bullhorn",
       },
       {
         name: "commandes_encours",
+        path: "/commande-en-cours",
         libelle: "Commandes en cours",
         icone: "fa-hourglass-start",
         active: false,
       },
       {
         name: "historique_commandes",
+        path: "/historiques",
         libelle: "Historique des commandes",
         icone: "fa-history",
         active: true,
       },
       {
         name: "suivi_activite",
+        path: "/suivi-activites",
         libelle: "Suivi de l’activité",
         active: false,
         icone: "fa-chart-line",
       },
       {
         name: "disponibilite_plats",
+        path: "/disponibles-plats",
         libelle: "Disponibilité des plats",
         icone: "fa-list-ul",
         active: false,

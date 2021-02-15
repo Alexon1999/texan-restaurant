@@ -40,3 +40,9 @@
 .product--quantite button {
   margin: 0 10px;
 }
+
+@media (max-width: 600px) {
+  .product--info-title {
+    font-size: 1rem;
+  }
+}

@@ -175,3 +175,21 @@
   color: rgb(107, 107, 107);
   font-size: 13px;
 }
+
+@media (max-width: 600px) {
+  .paiement__process--options span {
+    background-color: #ccc;
+    padding: 1px 5px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .paiement__process p {
+    font-size: 12px;
+  }
+  .paiement__details__recapitualitfs,
+  .paiement__details__modePaiement {
+    padding: 16px 0;
+  }
+}

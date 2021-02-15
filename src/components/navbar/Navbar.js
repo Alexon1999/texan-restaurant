@@ -56,7 +56,8 @@ const NavBar = () => {
     // smoothScroll(id)(e);
   };
 
-  if (location.pathname !== "/admin") {
+  const regex = /^\/admin/g;
+  if (!location.pathname.match(regex)) {
     return (
       <nav
         onMouseEnter={() => setShowBgNavBar(true)}

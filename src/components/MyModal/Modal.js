@@ -66,7 +66,9 @@ const Modal = ({ showModal, handleClose, closeButton = true, children }) => {
 
             {closeButton && (
               <div className='myModal__modal__close'>
-                <IconButton onClick={handleClose} className='myModal__modal__close-btn'>
+                <IconButton
+                  onClick={handleClose}
+                  className='myModal__modal__close-btn'>
                   <i className='fas fa-times'></i>
                 </IconButton>
               </div>

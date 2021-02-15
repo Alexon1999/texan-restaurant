@@ -46,3 +46,21 @@
   margin: auto !important;
   display: block !important;
 }
+
+@media (max-width: 600px) {
+  .panier__vide img {
+    max-width: 70%;
+  }
+
+  .panier__vide h1,
+  .panier__container h1 {
+    font-size: 1.3rem;
+  }
+
+  .panier__container--prix h1 {
+    font-size: 1.3rem;
+  }
+  .panier__container--prix p {
+    font-size: 1.3rem;
+  }
+}

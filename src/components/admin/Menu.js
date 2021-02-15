@@ -5,10 +5,13 @@ import { useState } from "react";
 
 import "./menu.css";
 import { IconButton } from "@material-ui/core";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 const AdminNav = () => {
   const admin = useSelector(selectAdmin);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { path } = useRouteMatch();
 
   const [active, setActive] = useState(false);
 
@@ -28,6 +31,7 @@ const AdminNav = () => {
             onClick={() => {
               if (admin.currentPage !== page.name) {
                 dispatch(changePage(page.name));
+                history.push(path + page.path);
               }
             }}>
             <i className={"fas adminNav__link__icone " + page.icone}></i>{" "}

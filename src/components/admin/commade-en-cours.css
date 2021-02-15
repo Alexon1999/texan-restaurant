@@ -1,0 +1,35 @@
+.commande-en-cours {
+  margin: 3rem auto;
+  width: 80%;
+}
+
+.commande-en-cours__card {
+  padding: 1rem;
+  background-color: rgb(245, 245, 245);
+  margin: 0 0 1.5rem;
+  border-radius: 10px;
+}
+
+.commande-en-cours__card-ref {
+  color: rgb(102, 100, 100);
+}
+
+.commande-en-cours .commande-en-cours__card-heading {
+  font-size: 1.2rem;
+  color: rgb(138, 134, 134);
+  margin-bottom: 1rem;
+}
+.commande-en-cours img {
+  max-width: 75px;
+  object-fit: contain;
+}
+
+.commande-en-cours__card-product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.commande-en-cours__card-product h2 {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}

@@ -55,3 +55,21 @@
   /* margin: auto !important; */
   display: flex !important;
 }
+
+@media (max-width: 1100px) {
+  .card__item__heading {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 545px) {
+  .card__item__image-container img {
+    /* taille image */
+    max-width: 175px;
+    max-height: 125px;
+    object-fit: contain;
+  }
+  .card__item__heading {
+    font-size: 1.4rem;
+  }
+}

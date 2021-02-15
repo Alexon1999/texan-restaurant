@@ -43,7 +43,7 @@ function App() {
             </Elements>
           </Route>
           <Route exact path='/felicitation' component={Felicitation} />
-          <Route exact path='/admin' component={Admin} />
+          <Route path='/admin' component={Admin} />
           <Route exact component={NotFoundPage} />
         </Switch>
       </Router>
