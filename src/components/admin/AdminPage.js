@@ -28,7 +28,7 @@ const AdminPage = () => {
 
   const classes = useStyles();
   const { path, url } = useRouteMatch();
-  console.log(path, url);
+  console.log(path, url); //  /admin
   return (
     <div className='adminPage'>
       <IconButton className={classes.root}>
