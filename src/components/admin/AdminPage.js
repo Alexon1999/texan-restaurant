@@ -12,6 +12,8 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAdmin, changePage } from "../../app/Redux-slices/adminSlice";
 import CommandeEnCours from "./CommandeEnCours";
+import Suivi from "./Suivi";
+import Disponibilte from "./Disponibilite";
 
 const useStyles = makeStyles({
   root: {
@@ -47,8 +49,12 @@ const AdminPage = () => {
             <Route exact path={path + "/historiques"}>
               <HistoriqueTable />
             </Route>
-            <Route exact path={path + "/suivi-activites"}></Route>
-            <Route exact path={path + "/disponibles-plats"}></Route>
+            <Route exact path={path + "/suivi-activites"}>
+              <Suivi />
+            </Route>
+            <Route exact path={path + "/disponibles-plats"}>
+              <Disponibilte />
+            </Route>
           </Switch>
         </div>
       </div>

@@ -2,11 +2,13 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
-  Typography,
+  Button,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { calculTotal } from "../../utilities";
 
 import "./commade-en-cours.css";
+import CommandeEnCoursProduct from "./CommandeEnCoursProduct";
 const CommandeEnCours = () => {
   return (
     <div className='commande-en-cours'>
@@ -15,9 +17,11 @@ const CommandeEnCours = () => {
           numRef: "zez545",
           nomClient: "Jack William",
           tel: "0155444313",
+          email: "jack@gmail.com",
           adresse: "75 rue besson ",
           ville: "paris",
           code_postale: "75546",
+          commentaire: "pas de salade",
           panier: [
             {
               title: "Frenchies",
@@ -39,9 +43,11 @@ const CommandeEnCours = () => {
           numRef: "isji9",
           nomClient: "Mary Drake",
           tel: "0155444313",
+          email: "mary@gmail.com",
           adresse: "45 avenue boulevard",
           ville: "paris",
           code_postale: "75136",
+          commentaire: "",
           panier: [
             {
               title: "Hot Wings",
@@ -75,21 +81,47 @@ const CommandeEnCours = () => {
             </span>
           </h2>
           {commande.panier.map((produit) => (
-            <div key={produit.id} className='commande-en-cours__card-product'>
-              <img src={produit.img} alt={produit.title} />
-              <h2>{produit.title}</h2>
-              <h2>{produit.quantite}</h2>
-            </div>
+            <CommandeEnCoursProduct {...produit} key={produit.id} />
           ))}
+          <h2 className='commande-en-cours__card-totale'>
+            Totale <span>{calculTotal(commande.panier)} €</span>
+          </h2>
+
           <Accordion>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon style={{ color: "black" }} />}
               aria-controls='panel1a-content'
               id='panel1a-header'>
-              <Typography>Information et Adresse de Livraison</Typography>
+              <h6>Information et Adresse de Livraison</h6>
             </AccordionSummary>
-            <AccordionDetails></AccordionDetails>
+            <AccordionDetails>
+              <div>
+                {commande.commentaire && (
+                  <p className='commande-en-cours__card-commentaire'>
+                    Commentaire : {commande.commentaire}
+                  </p>
+                )}
+                <p>Nom: {commande.nomClient}</p>
+                <p>Email: {commande.email}</p>
+                <p>Téléphone: {commande.tel}</p>
+                <p>
+                  Adresse: {commande.adresse} {commande.code_postale}{" "}
+                  {commande.ville}
+                </p>
+              </div>
+            </AccordionDetails>
           </Accordion>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: "10px",
+            }}>
+            <Button variant='contained' color='primary'>
+              Terminer
+            </Button>
+          </div>
         </div>
       ))}
     </div>

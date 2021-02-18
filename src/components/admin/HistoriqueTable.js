@@ -32,18 +32,18 @@ export default function HistoriqueTable({ contacts, deleteContact }) {
       <Table className={classes.table} aria-label='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell className={classes.heading}>Nom</TableCell>
+            <TableCell className={classes.heading}>Client</TableCell>
             <TableCell className={classes.heading} align='right'>
-              Prenom
+              Commande
             </TableCell>
             <TableCell className={classes.heading} align='right'>
-              Numéro Teléphone
+              Date Commande
             </TableCell>
             <TableCell className={classes.heading} align='right'>
-              Email
+              Réglé
             </TableCell>
             <TableCell className={classes.heading} align='right'>
-              Commentaire
+              Détails Commande
             </TableCell>
           </TableRow>
         </TableHead>

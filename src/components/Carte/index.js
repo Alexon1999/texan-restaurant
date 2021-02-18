@@ -1,5 +1,5 @@
 import { IconButton } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import carteImg from "../../images/menu.png";
 
 import "./carte.css";
