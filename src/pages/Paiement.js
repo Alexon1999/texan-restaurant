@@ -142,7 +142,7 @@ const Paiement = () => {
 
   const { nom, prenom, email, num_tel, adresse, ville, code_postale } = state;
 
-  const prixTotal = calculTotal(baskets);
+  const prixTotale = calculTotal(baskets);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -166,9 +166,10 @@ const Paiement = () => {
     setProcessing(true);
 
     const { data } = await axios.post(
-      "https://texan-stripe.herokuapp.com/create-client-secret",
+      // "https://texan-stripe.herokuapp.com/create-client-secret",
+      "http://localhost:8000/paiement/create-client-secret",
       {
-        amount: prixTotal * 100,
+        amount: parseInt((prixTotale * 100).toFixed(2), 10),
         email,
       }
     );
@@ -204,6 +205,71 @@ const Paiement = () => {
         setProcessing(false);
         setDisabled(false);
         setSucceeded(true);
+
+        const menus = [];
+        const produits = [];
+        baskets.forEach((item) => {
+          if (item.categories.some((categ) => categ.nom === "menus")) {
+            menus.push({ menu_id: item.id, quantite: item.quantite });
+          } else {
+            produits.push({
+              produit_id: item.id,
+              quantite: item.quantite,
+            });
+          }
+        });
+
+        console.log({ menus, produits });
+        // const menus = baskets
+        //   .filter((item) =>
+        //     item.categories.some((categ) => categ.nom === "menus")
+        //   )
+        //   .map((menu) => ({ menu_id: menu.id, quantite: menu.quantite }));
+
+        // const produits = baskets
+        //   .filter((item) =>
+        //     item.categories.every((categ) => categ.nom !== "menus")
+        //   )
+        //   .map((produit) => ({
+        //     produit_id: produit.id,
+        //     quantite: produit.quantite,
+        //   }));
+
+        const data = {
+          client: {
+            nom,
+            prenom,
+            email,
+            telephone: num_tel,
+            adresse,
+            ville,
+            code_postale,
+          },
+          panier: {
+            menus,
+            produits,
+          },
+          commentaire: "",
+          prix_totale: prixTotale,
+        };
+
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        try {
+          const commande = await axios.post(
+            "http://localhost:8000/paiement/create-commande",
+            data,
+            config
+          );
+          // console.log(commande.data);
+        } catch (error) {
+          // console.log(error);
+        }
+
         reinitialiserState();
         dispatch(emptyBasket());
         history.replace("/felicitation", { payer: true });
@@ -211,6 +277,7 @@ const Paiement = () => {
     } catch (err) {
       // console.log(err.message);
       // setError(err.message);
+      // console.log(err);
     }
   };
 
@@ -366,9 +433,9 @@ const Paiement = () => {
               {baskets.map((product) => (
                 <div
                   className='paiement__details__product__details'
-                  key={product.id}>
+                  key={product.nom}>
                   <div className='paiement__details__product__details-info'>
-                    <p>{product.title}</p>
+                    <p>{product.nom}</p>
                     <p className='paiement__details__product__details-info-quantite'>
                       Quantité: <span> {product.quantite} </span>{" "}
                     </p>
@@ -381,7 +448,7 @@ const Paiement = () => {
               <div className='paiement__details__recapitualitfs-total'>
                 <p>TOTAL</p>
                 <p className='paiement__details__recapitualitfs-total-prix'>
-                  {prixTotal}€
+                  {prixTotale}€
                 </p>
               </div>
             </div>
@@ -407,7 +474,7 @@ const Paiement = () => {
                 <Button
                   onClick={Payer}
                   disabled={
-                    prixTotal <= 1 || processing || disabled || succeeded
+                    prixTotale <= 1 || processing || disabled || succeeded
                   }
                   type='submit'
                   variant='contained'
@@ -417,7 +484,7 @@ const Paiement = () => {
                     {processing ? (
                       <img src={spinner} alt='spinner' />
                     ) : (
-                      <>Payer {prixTotal}€</>
+                      <>Payer {prixTotale}€</>
                     )}
                   </span>
                 </Button>

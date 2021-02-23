@@ -10,7 +10,7 @@ export const basketsSlice = createSlice({
   reducers: {
     incrementQauntite: (state, action) => {
       const productIdx = state.findIndex(
-        (product) => product.id === action.payload.id
+        (product) => product.nom === action.payload.nom
       );
       if (productIdx !== -1) {
         state[productIdx].quantite++;
@@ -18,7 +18,7 @@ export const basketsSlice = createSlice({
     },
     decrementQauntite: (state, action) => {
       const productIdx = state.findIndex(
-        (product) => product.id === action.payload.id
+        (product) => product.nom === action.payload.nom
       );
 
       if (productIdx !== -1) {
@@ -32,14 +32,16 @@ export const basketsSlice = createSlice({
 
     addProduct: (state, action) => {
       const productIdx = state.findIndex(
-        (product) => product.id === action.payload.id
+        (product) => product.nom === action.payload.nom
       );
       if (productIdx !== -1) {
-        const quantite = state[productIdx].quantite + action.payload.quantite;
-        state.splice(productIdx, 1, {
-          ...action.payload,
-          quantite,
-        });
+        // const quantite = state[productIdx].quantite + action.payload.quantite;
+        // state.splice(productIdx, 1, {
+        //   ...action.payload,
+        //   quantite,
+        // });
+        const product = state[productIdx];
+        product.quantite += action.payload.quantite;
       } else {
         state.push(action.payload);
       }

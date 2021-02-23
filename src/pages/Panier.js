@@ -25,7 +25,7 @@ const Panier = () => {
             {getNombresArticles(baskets) > 1 && "s"})
           </h1>
           {baskets.map((product) => {
-            return <Product key={product.id} {...product} />;
+            return <Product key={product.nom} {...product} />;
           })}
 
           <div className='panier__container--prix'>

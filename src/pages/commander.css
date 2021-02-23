@@ -26,6 +26,7 @@
 @media (max-width: 1080px) {
   .commander__container {
     grid-template-columns: 1fr;
+    padding: 3rem 1rem;
   }
 
   .commander__container__cards {
@@ -42,10 +43,6 @@
 
   .commander__carte.white i {
     color: rgb(238, 236, 236) !important;
-  }
-
-  .commander__container {
-    padding: 3rem 1rem;
   }
 }
 

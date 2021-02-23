@@ -1,6 +1,7 @@
-.nouvelle__commande__product {
+.nouvelle__commande__product > div {
   display: flex;
 }
+
 .nouvelle__commande__product h1 {
   font-size: 1.5rem;
 }

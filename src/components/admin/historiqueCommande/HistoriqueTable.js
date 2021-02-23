@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import HistoriqueTableRow from "./HistoriqueTableRow";
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HistoriqueTable({ contacts, deleteContact }) {
+export default function HistoriqueTable({ commandes }) {
   const classes = useStyles();
 
   return (
@@ -33,37 +33,23 @@ export default function HistoriqueTable({ contacts, deleteContact }) {
         <TableHead>
           <TableRow>
             <TableCell className={classes.heading}>Client</TableCell>
-            <TableCell className={classes.heading} align='right'>
+            <TableCell className={classes.heading} align='center'>
               Commande
             </TableCell>
-            <TableCell className={classes.heading} align='right'>
+            <TableCell className={classes.heading} align='center'>
               Date Commande
             </TableCell>
-            <TableCell className={classes.heading} align='right'>
+            <TableCell className={classes.heading} align='center'>
               Réglé
             </TableCell>
-            <TableCell className={classes.heading} align='right'>
+            <TableCell className={classes.heading} align='center'>
               Détails Commande
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {contacts?.map((contact) => (
-            <TableRow key={contact.id}>
-              <TableCell component='th' scope='row'>
-                {contact.nom}
-              </TableCell>
-              <TableCell align='right'>{contact.nomSociete}</TableCell>
-              <TableCell align='right'>{contact.numTel}</TableCell>
-              <TableCell align='right'>{contact.email}</TableCell>
-              <TableCell align='right'>{contact.message}</TableCell>
-              <TableCell
-                align='right'
-                className='text-light bg-danger text-center'
-                onClick={deleteContact(contact.id)}>
-                X
-              </TableCell>
-            </TableRow>
+          {commandes?.map((commande) => (
+            <HistoriqueTableRow key={commande.id} commande={commande} />
           ))}
         </TableBody>
       </Table>

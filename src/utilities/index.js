@@ -55,15 +55,15 @@ function calculTotal(baskets = []) {
     return total;
   }, 0);
 
-  return price.toFixed(2);
+  return +price.toFixed(2);
 }
 
 function calculPrixProduitAvecQuantite(product) {
-  return (product.quantite * product.prix).toFixed(2);
+  return +(product.quantite * product.prix).toFixed(2);
 }
 
 function splitPrix(prix = 0.0, splitOn = ".", joinWith = "€") {
-  return prix.toString().split(splitOn).join(joinWith);
+  return parseFloat(prix).toFixed(2).toString().split(splitOn).join(joinWith);
 }
 
 function getNombresArticles(baskets = []) {

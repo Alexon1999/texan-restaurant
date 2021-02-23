@@ -30,6 +30,7 @@
   text-align: center;
   display: flex;
   justify-content: space-between;
+  color: rgb(87, 84, 250);
 }
 .commande-en-cours__card-commentaire {
   color: rgb(248, 38, 84);
@@ -42,9 +43,9 @@
 }
 
 .commande-en-cours__card-product {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
   margin: 10px 0;
 }
 
@@ -60,8 +61,10 @@
 .commande-en-cours__card-product__info {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   position: relative;
+  max-width: 300px;
+  margin: auto;
 }
 
 .commande-en-cours__card-product__info::before {

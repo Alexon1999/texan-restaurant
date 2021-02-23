@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { splitPrix } from "../../utilities";
-const CommandeEnCoursProduct = ({ title, img, prix, id, quantite }) => {
+import { splitPrix } from "../../../utilities";
+const CommandeEnCoursProduct = ({ nom, prix, quantite }) => {
   // const [finish, setFinish] = useState(false);
   const prix_quantite = (prix * quantite).toFixed(2);
 
@@ -12,7 +12,7 @@ const CommandeEnCoursProduct = ({ title, img, prix, id, quantite }) => {
       }>
       <div className='commande-en-cours__card-product__info'>
         <h2>{quantite}</h2>
-        <h2 className='commande-en-cours__card-product-title'>{title} : </h2>
+        <h2 className='commande-en-cours__card-product-title'>{nom}</h2>
         <h2>{splitPrix(prix_quantite)}</h2>
       </div>
       {/* <div className='commande-en-cours__card-product-icones'>

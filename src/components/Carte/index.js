@@ -6,12 +6,13 @@ import "./carte.css";
 
 const Carte = ({ setActive, active, activeCarte, setActiveCarte }) => {
   const [carte, setCarte] = useState([
-    "Entrées",
-    "Burgers",
-    "Poutines",
-    "Sides",
-    "Desserts",
-    "Boissons",
+    { libelle: "Menus", nom: "menus" },
+    { libelle: "Entrées", nom: "entrees" },
+    { libelle: "Burgers", nom: "burgers" },
+    { libelle: "Poutines", nom: "poutines" },
+    { libelle: "Sides", nom: "sides" },
+    { libelle: "Desserts", nom: "desserts" },
+    { libelle: "Boissons", nom: "boissons" },
   ]);
 
   return (
@@ -23,13 +24,13 @@ const Carte = ({ setActive, active, activeCarte, setActiveCarte }) => {
       <div className='carte__items'>
         {carte.map((carte) => (
           <p
-            key={carte}
-            className={`carte__item ${active === carte ? "active" : ""}`}
+            key={carte.nom}
+            className={`carte__item ${active === carte.nom ? "active" : ""}`}
             onClick={() => {
-              setActive(carte);
+              setActive(carte.nom);
               setActiveCarte(false);
             }}>
-            {carte}
+            {carte.libelle}
           </p>
         ))}
       </div>

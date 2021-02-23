@@ -4,7 +4,7 @@ import { ProgressBar } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { removeAlert } from "../../app/Redux-slices/alertsSlice";
 
-const Alert = ({ img, title, id }) => {
+const Alert = ({ image_url, nom, id }) => {
   const [pourcentage, setPourcentage] = useState(0);
   const dispath = useDispatch();
 
@@ -30,9 +30,9 @@ const Alert = ({ img, title, id }) => {
       animate='to'
       initial='from'
       exit='exit'>
-      <img src={img} alt={title} />
+      <img src={image_url} alt={nom} />
       <p>
-        {title} <span>a été ajouté dans votre panier.</span>
+        {nom} <span>a été ajouté dans votre panier.</span>
       </p>
       <ProgressBar now={pourcentage} />
       <i

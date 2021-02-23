@@ -44,7 +44,7 @@ export const adminSlice = createSlice({
         active: false,
       },
     ],
-    currentPage: "historique_commandes",
+    currentPage: "nouvelles_commandes",
   },
   reducers: {
     changePage: (state, action) => {

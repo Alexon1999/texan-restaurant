@@ -18,7 +18,16 @@ import Modal from "../MyModal/Modal";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
-const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
+const Card = ({
+  nom,
+  prix,
+  id,
+  description,
+  ingredients,
+  produits,
+  categories,
+  image_url,
+}) => {
   const [show, setShow] = useState(false);
   const dispath = useDispatch();
   const [showButton, setShowButton] = useState(false);
@@ -48,9 +57,9 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
       className='card__item'
       onMouseEnter={() => setShowButton(true)}
       onMouseLeave={() => setShowButton(false)}>
-      <h1 className='card__item__heading'>{title}</h1>
+      <h1 className='card__item__heading'>{nom}</h1>
       <div className='card__item__image-container'>
-        <img src={img} alt={title} />
+        <img src={image_url} alt={nom} />
       </div>
       <div className='card__item__details'>
         <p>
@@ -67,8 +76,17 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
               exit='exit'
               className='card__item__shopping-btn'
               onClick={() => {
-                dispath(addProduct({ title, img, prix, id, quantite: 1 }));
-                dispath(addAlert({ title, img, id: uuidv4() }));
+                dispath(
+                  addProduct({
+                    nom,
+                    image_url,
+                    prix,
+                    id,
+                    quantite: 1,
+                    categories,
+                  })
+                );
+                dispath(addAlert({ nom, image_url, id: uuidv4() }));
               }}>
               <OverlayTrigger
                 placement='top'
@@ -91,8 +109,8 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
 
       <Modal showModal={show} setShowModal={setShow} handleClose={handleClose}>
         <Modal.Header>
-          <h1>{title}</h1>
-          <img src={img} alt={title} />
+          <h1>{nom}</h1>
+          <img src={image_url} alt={nom} />
           <p>{splitPrix(prix)}</p>
         </Modal.Header>
         <Modal.Body>
@@ -130,8 +148,10 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
           <Button
             disabled={quantite === 0}
             onClick={() => {
-              dispath(addProduct({ title, img, prix, id, quantite }));
-              dispath(addAlert({ title, img, id: uuidv4() }));
+              dispath(
+                addProduct({ nom, image_url, prix, id, quantite, categories })
+              );
+              dispath(addAlert({ nom, image_url, id: uuidv4() }));
               setQuantite(1);
             }}
             variant='contained'
@@ -143,7 +163,7 @@ const Card = ({ title = "Frenchies", img = burger, prix = 11.99, id }) => {
         </Modal.Footer>
       </Modal>
       {/* <ModalBootsrap
-        title={title}
+        nom={nom}
         img={img}
         show={show}
         handleClose={() => {

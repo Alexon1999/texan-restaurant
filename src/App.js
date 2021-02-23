@@ -16,7 +16,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import Paiement from "./pages/Paiement";
 import Felicitation from "./pages/Felicitation";
-import Admin from "./components/admin";
+import Admin from "./pages/Admin";
 
 // publish key c'est pour identifier votre compte stripe, ce n'est pas un secret key
 const stripePromise = loadStripe(

@@ -9,14 +9,14 @@ import {
 import { IconButton } from "@material-ui/core";
 import { splitPrix } from "../../utilities";
 
-const Product = ({ img, title, prix, id, quantite }) => {
+const Product = ({ image_url, nom, prix, id, quantite }) => {
   const dispatch = useDispatch();
 
   return (
     <div className='product'>
-      <img src={img} alt={title} />
+      <img src={image_url} alt={nom} />
       <div className='product--info'>
-        <p className='product--info-title'>{title}</p>
+        <p className='product--info-title'>{nom}</p>
         <p className='product--info-prix'>{splitPrix(prix)}</p>
       </div>
 
@@ -24,7 +24,7 @@ const Product = ({ img, title, prix, id, quantite }) => {
         <IconButton
           onClick={() => {
             if (quantite > 0) {
-              dispatch(decrementQauntite({ id }));
+              dispatch(decrementQauntite({ nom }));
             }
           }}>
           <RemoveIcon />
@@ -32,7 +32,7 @@ const Product = ({ img, title, prix, id, quantite }) => {
 
         <span>{quantite}</span>
 
-        <IconButton onClick={() => dispatch(incrementQauntite({ id }))}>
+        <IconButton onClick={() => dispatch(incrementQauntite({ nom }))}>
           <AddIcon />
         </IconButton>
       </div>

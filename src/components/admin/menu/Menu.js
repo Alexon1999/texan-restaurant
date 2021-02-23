@@ -1,6 +1,6 @@
-import Logo from "../../images/logo.png";
+import Logo from "../../../images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAdmin, changePage } from "../../app/Redux-slices/adminSlice";
+import { selectAdmin, changePage } from "../../../app/Redux-slices/adminSlice";
 import { useState } from "react";
 
 import "./menu.css";
@@ -24,15 +24,14 @@ const AdminNav = () => {
       <div className='adminNav__links'>
         {admin.pages.map((page) => (
           <button
+            key={page.name}
             className={
               "adminNav__link " +
               (admin.currentPage === page.name ? "active" : "")
             }
             onClick={() => {
-              if (admin.currentPage !== page.name) {
-                dispatch(changePage(page.name));
-                history.push(path + page.path);
-              }
+              dispatch(changePage(page.name));
+              history.push(path + page.path);
             }}>
             <i className={"fas adminNav__link__icone " + page.icone}></i>{" "}
             <p>{page.libelle}</p>
