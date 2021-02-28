@@ -166,7 +166,8 @@ const Paiement = () => {
     setProcessing(true);
 
     const { data } = await axios.post(
-      // "https://texan-stripe.herokuapp.com/create-client-secret",
+      // "https://texan-stripe.herokuapp.com/create-client-secret", // node
+      // "https://texan-back.herokuapp.com/paiement/create-client-secret", // django
       "http://localhost:8000/paiement/create-client-secret",
       {
         amount: parseInt((prixTotale * 100).toFixed(2), 10),
